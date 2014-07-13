@@ -1,0 +1,34 @@
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+sourceCompatibility = 1.6
+version = '1.0'
+
+mainClassName = 'org.openbakery.examples.helloworld.Main'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'JInsim-Example', 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+	 	maven {
+			url "http://openbakery.org/repository/"
+	  }
+}
+
+ext.logbackVersion = '1.0.+'
+ext.jinsimVersion = '6.+'
+
+dependencies {
+	compile group: 'org.openbakery.jinsim', name: 'jinsim', version: jinsimVersion
+  compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+}
+
+
+run {
+     args 'localhost', '29999'
+}

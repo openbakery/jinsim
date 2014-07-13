@@ -1,0 +1,62 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+
+sourceCompatibility = 1.6
+version = '0.6.0'
+group = 'org.openbakery.jinsim'
+
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'JInSim', 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1+'
+    testCompile group: 'org.testng', name: 'testng', version: '6.8.+'
+}
+
+test {
+  useTestNG()
+}
+
+
+task zip(type: Zip, dependsOn: 'javadoc') {
+    into('src') {
+      from 'src'
+    }
+    into('resource') {
+      from 'resource'
+    }
+    into('libs') {
+        from configurations.runtime
+    }
+    into('docs') {
+        from 'build/docs'
+    }
+    into('') {
+      from 'build/libs'
+    }
+    
+    from 'LICENSE'
+    from 'README'
+    from 'CHANGES'
+}
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://localhost/tmp/myRepo/")
+        }
+    }
+}

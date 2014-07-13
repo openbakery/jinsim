@@ -1,0 +1,56 @@
+CHANGES
+=======
+
+v0.6 - compatible with LFS version 0.6f
+  * Renamed package net.sf to org.openbakery
+  * Fixed ReorderReponse
+  * Added CarContact response
+  * Added open configs to the Track.java and fixed some typos
+
+v0.5 - compatible with LFS version 0.5 Z28
+  * renamed packages from org.kerf to net.sf
+  * Updated to new patch X, Y and Z features
+    - Updated all Response packets
+    - added new Tiny and Small requests
+    - Separate the client from the connection type (UDP/TCP)
+    - Simplified the response listener, so that the client do not need to register for specific response types.
+      The client now gets notified with every response.
+    - Added new JInSim buttons
+    - Added new autocross packets
+  * Using Java 5.0 now
+  * Added commons logging
+  * Updated the examples
+  * Removed InSimHelper, because the new request are simple enough so that the helper makes no sense any more
+  * Added TCP support
+  * Added Encoding support so that the LFS Codepages are decoded properly into String, and String are encoded in codepages 
+  * Implemented InSim Relay client
+  * RaceStart response getRaceLaps return real race laps and getRaceHours returns the hours
+
+v0.5rc6
+  * fixed UDP: The insim packages were not process when using the UDP socket that is opened for outgauge.
+    This has cause some weird OutGauge responses.
+
+
+v0.4 (work in progress, discontinued )
+  * Added new insim features in LFS0.5V3: pit, flag, penalty, take over
+
+v0.3
+----
+  * Experimental org.kerf.jinsim.AsynchronousClient that uses the new selectable IO in Java's nio package.
+  * Fixes to thread synchronization (thanks Brilwing!)
+  * Fixes to math errors in org.kerf.jinsim.RaceEventClient.
+  * Fixes and additions to requests and responses
+  * Added some new helper methods to org.kerf.jinsim.InSimHelper
+
+v0.2
+----
+  * New example: A working speedometer. This example shows how you might use OutGauge data to drive an external GUI (or real gauges?)
+  * org.kerf.jinsim.RaceEventClient is a class that gathers interesting race events as they happen. Extending this class will allow you to easily reaspond to certain race events easily. Currently it will tell you when a car is losing control and may be crashing (or drifting?), and also reports on the closest current race between two cars. 
+  * Some of the code has been improved for performance. Particularly when creating OutSim and OutGauge packets, since the information contained in them is only accurate for a short amount of time.
+  * org.kerf.jinsim.InSimHelper is a new helper class that is a handy place to look for commonly needed tasks. There are plans for a number of new methods. Right now you can get a taste for what will go in there. A lot of the requests will have an easy to use helper so you don't have to create them and send them. There is a "sendColoredMessage()" helper right now that makes it much easier to send a message in any color you'd like. Eventually there will be a "sendMultiColoredMessage()" helper that will allow you to mix colors within a message easily.
+  * More javadoc was added and will continue to be added.  
+
+v0.1
+----
+  * Initial pre-alpha release. The core functionality should work correctly. Multicasting and a RaceEventClient are in progress.
+
