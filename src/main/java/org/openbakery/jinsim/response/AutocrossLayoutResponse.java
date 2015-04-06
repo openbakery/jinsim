@@ -1,9 +1,9 @@
 package org.openbakery.jinsim.response;
 
+import org.openbakery.jinsim.PacketType;
+
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
-
-import org.openbakery.jinsim.PacketType;
 
 public class AutocrossLayoutResponse extends InSimResponse {
 
@@ -14,6 +14,10 @@ public class AutocrossLayoutResponse extends InSimResponse {
 	private byte objects;
 
 	private String name;
+
+	public AutocrossLayoutResponse() {
+		super(PacketType.AUTOCROSS_LAYOUT);
+	}
 
 	@Override
 	public void construct(ByteBuffer buffer) throws BufferUnderflowException {
@@ -39,10 +43,6 @@ public class AutocrossLayoutResponse extends InSimResponse {
 
 	public String getName() {
 		return name;
-	}
-
-	public AutocrossLayoutResponse() {
-		super(PacketType.AUTOCROSS_LAYOUT);
 	}
 
 }

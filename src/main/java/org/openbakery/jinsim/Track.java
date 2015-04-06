@@ -168,19 +168,11 @@ public enum Track {
 	private int splits;
 	private String shortname;
 
-	public String getShortname() {
-		return shortname;
-	}
-
 	Track(String number, String name, String shortname, int splits) {
 		this.number = number;
 		this.name = name;
 		this.shortname = shortname;
 		this.splits = splits;
-	}
-
-	public String getNumber() {
-		return number;
 	}
 
 	public static Track getTrackByNumber(String number) {
@@ -192,14 +184,6 @@ public enum Track {
 		throw new IllegalArgumentException("No track for given number found: " + number);
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public int getSplits() {
-		return splits;
-	}
-
 	public static Track getTrackByShortName(String trackname) {
 		for (Track track : Track.values()) {
 			if (track.getShortname().equals(trackname)) {
@@ -207,6 +191,22 @@ public enum Track {
 			}
 		}
 		throw new IllegalArgumentException("No track for given number found: " + trackname);
+	}
+
+	public String getShortname() {
+		return shortname;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getSplits() {
+		return splits;
 	}
 
 

@@ -1,64 +1,64 @@
 package org.openbakery.jinsim.response;
 
+import org.openbakery.jinsim.PacketType;
+
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
-
-import org.openbakery.jinsim.PacketType;
 
 /**
  * @author Rob Heiser (jinsim@kerf.org)
  * @since 0.001
  */
 public class VersionResponse extends InSimResponse {
-	
-		public static final String TYPE = "VER";
-		
-    private String version;
-    private String product;
-    private short  netVersion;
 
-    VersionResponse() {
-        super(PacketType.VERSION);
-    }
-    
-    public void construct(ByteBuffer buffer) throws BufferUnderflowException {
-        super.construct(buffer);
-    	setVersion(getString(buffer, 8));
-        setProduct(getString(buffer, 6));
-        setNetVersion(buffer.getShort());
-    }
+	public static final String TYPE = "VER";
 
-    public String toString() {
-        String retval = super.toString();
-        retval += "Product: " + getProduct() + "\n";
-        retval += "Version: " + getVersion() + "\n";
-        retval += "Net Protocol Version: " + getNetVersion() + "\n";
+	private String version;
+	private String product;
+	private short netVersion;
 
-        return retval;
-    }
+	VersionResponse() {
+		super(PacketType.VERSION);
+	}
 
-    public short getNetVersion() {
-        return netVersion;
-    }
+	public void construct(ByteBuffer buffer) throws BufferUnderflowException {
+		super.construct(buffer);
+		setVersion(getString(buffer, 8));
+		setProduct(getString(buffer, 6));
+		setNetVersion(buffer.getShort());
+	}
 
-    public String getProduct() {
-        return product;
-    }
+	public String toString() {
+		String retval = super.toString();
+		retval += "Product: " + getProduct() + "\n";
+		retval += "Version: " + getVersion() + "\n";
+		retval += "Net Protocol Version: " + getNetVersion() + "\n";
 
-    public String getVersion() {
-        return version;
-    }
+		return retval;
+	}
 
-    public void setNetVersion(short netVersion) {
-        this.netVersion = netVersion;
-    }
+	public short getNetVersion() {
+		return netVersion;
+	}
 
-    public void setProduct(String product) {
-        this.product = product;
-    }
+	public void setNetVersion(short netVersion) {
+		this.netVersion = netVersion;
+	}
 
-    public void setVersion(String version) {
-        this.version = version;
-    }
+	public String getProduct() {
+		return product;
+	}
+
+	public void setProduct(String product) {
+		this.product = product;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
 
 }

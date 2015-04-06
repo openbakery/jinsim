@@ -9,8 +9,8 @@ import org.openbakery.jinsim.PacketType;
  */
 public class PlayerLeavingResponse extends PlayerResponse {
 
-    PlayerLeavingResponse() {
-    		super(PacketType.PLAYER_LEAVE);
-    }
+	PlayerLeavingResponse() {
+		super(PacketType.PLAYER_LEAVE);
+	}
 
 }

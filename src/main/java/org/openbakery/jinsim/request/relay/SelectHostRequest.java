@@ -38,54 +38,54 @@
 
 package org.openbakery.jinsim.request.relay;
 
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.PacketType;
+
+import java.nio.ByteBuffer;
 
 /**
  * @author Rob Heiser (jinsim@kerf.org)
  * @since 0.001
  */
 public class SelectHostRequest extends InSimRelayRequest {
-  private String hostname;
-  private String spectatorPassword = "";
-  private String adminPassword = "";
+	private String hostname;
+	private String spectatorPassword = "";
+	private String adminPassword = "";
 
-  public SelectHostRequest(String hostname, String spectatorPassword, String adminPassword) {
-	  super(PacketType.RELAY_SELECT_HOST, (byte)68);
-	  this.hostname = hostname;
-	  this.spectatorPassword = spectatorPassword;
-	  this.adminPassword = adminPassword;
-  }
+	public SelectHostRequest(String hostname, String spectatorPassword, String adminPassword) {
+		super(PacketType.RELAY_SELECT_HOST, (byte) 68);
+		this.hostname = hostname;
+		this.spectatorPassword = spectatorPassword;
+		this.adminPassword = adminPassword;
+	}
 
-  public SelectHostRequest(String hostname) {
-	  this(hostname, "", "");
-  }
- 
-
-  public void assemble(ByteBuffer buffer) {
-    super.assemble(buffer);
-    buffer.position(buffer.position()+1);
-    assembleString(buffer, hostname, 32);
-    assembleString(buffer, adminPassword, 16);
-    assembleString(buffer, spectatorPassword, 16);
-  }
-
-  public String toString() {
-    return "SelectHostRequest[hostname=" + hostname + "]";
-  }
-
-  public void setAdminPassword(String adminPassword) {
-    this.adminPassword = adminPassword;
-  }
+	public SelectHostRequest(String hostname) {
+		this(hostname, "", "");
+	}
 
 
-  public void setHostname(String hostname) {
-    this.hostname = hostname;
-  }
+	public void assemble(ByteBuffer buffer) {
+		super.assemble(buffer);
+		buffer.position(buffer.position() + 1);
+		assembleString(buffer, hostname, 32);
+		assembleString(buffer, adminPassword, 16);
+		assembleString(buffer, spectatorPassword, 16);
+	}
 
-  public void setSpectatorPassword(String spectatorPassword) {
-    this.spectatorPassword = spectatorPassword;
-  }
+	public String toString() {
+		return "SelectHostRequest[hostname=" + hostname + "]";
+	}
+
+	public void setAdminPassword(String adminPassword) {
+		this.adminPassword = adminPassword;
+	}
+
+
+	public void setHostname(String hostname) {
+		this.hostname = hostname;
+	}
+
+	public void setSpectatorPassword(String spectatorPassword) {
+		this.spectatorPassword = spectatorPassword;
+	}
 
 }

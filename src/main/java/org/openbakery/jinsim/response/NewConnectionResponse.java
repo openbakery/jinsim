@@ -1,28 +1,24 @@
 package org.openbakery.jinsim.response;
 
+import org.openbakery.jinsim.PacketType;
+
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 
-import org.openbakery.jinsim.PacketType;
-
 public class NewConnectionResponse extends RaceTrackingResponse {
 
-	public boolean isRemote() {
-		return remote;
-	}
-
 	private String username;
-
 	private String playername;
-
 	private boolean isAdmin;
-
 	private byte numberOfConnections;
-
 	private boolean remote;
 
 	public NewConnectionResponse() {
 		super(PacketType.NEW_CONNECTION);
+	}
+
+	public boolean isRemote() {
+		return remote;
 	}
 
 	@Override

@@ -1,10 +1,10 @@
 package org.openbakery.jinsim.request;
 
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.PacketType;
 import org.openbakery.jinsim.response.CameraPositionResponse;
 import org.openbakery.jinsim.types.InSimVector;
+
+import java.nio.ByteBuffer;
 
 /**
  * @author Rob Heiser (jinsim@kerf.org)

@@ -38,11 +38,6 @@
 
 package org.openbakery.jinsim;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.ListIterator;
-
 import org.openbakery.jinsim.event.OutOfControlEvent;
 import org.openbakery.jinsim.event.RaceEvent;
 import org.openbakery.jinsim.event.TightRaceEvent;
@@ -52,32 +47,36 @@ import org.openbakery.jinsim.response.MultiCarInfoResponse;
 import org.openbakery.jinsim.types.CompCar;
 import org.openbakery.jinsim.types.InSimVector;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
+
 /**
  * Experimental client that reports on various interesting "race events". The
  * first events are:
- * 
+ * <p/>
  * "Tight Race" - When two cars are closer than 10 meters apart "Out of Control" -
  * When a car's heading and direction differ by more than 13 degrees
- * 
+ *
  * @author Rob Heiser (jinsim@kerf.org)
  * @since 0.2
- * 
  */
 abstract public class RaceEventClient extends SimpleClient implements
-		InSimListener {
+				InSimListener {
 
 	// private static Log log = LogFactory.getLog(RaceEventClient.class);
 
 	@Override
 	public void connect(Channel channel, String name, String password)
-			throws IOException {
+					throws IOException {
 		addListener(this);
 		super.connect(channel, name, password);
 	}
 
 	@Override
 	public void connect(Channel channel, String password, String name,
-			short flags, int interval, int udpPort) throws IOException {
+											short flags, int interval, int udpPort) throws IOException {
 		addListener(this);
 		super.connect(channel, password, name, flags, interval, udpPort);
 	}
@@ -93,7 +92,7 @@ abstract public class RaceEventClient extends SimpleClient implements
 			double closestDistance = Double.MAX_VALUE;
 
 			for (ListIterator<CompCar> it = carList.listIterator(); it
-					.hasNext();) {
+							.hasNext(); ) {
 				CompCar currCar = it.next();
 
 				if (car1 == null) {
@@ -104,10 +103,10 @@ abstract public class RaceEventClient extends SimpleClient implements
 				 */
 				if (car1.getSpeed() > 10) {
 					float angDelta = Math.abs(car1.getDirectionInDegrees()
-							- car1.getHeadingInDegrees());
+									- car1.getHeadingInDegrees());
 					if (angDelta > 180) {
 						angDelta = 360.0f - angDelta
-								+ Math.abs(car1.getDirection());
+										+ Math.abs(car1.getDirection());
 					}
 
 					// If heading and direction differ by 13 degrees or more,
@@ -119,7 +118,7 @@ abstract public class RaceEventClient extends SimpleClient implements
 
 				InSimVector currPos = currCar.getPosition();
 				for (Iterator<CompCar> jt = carList
-						.listIterator(it.nextIndex()); jt.hasNext();) {
+								.listIterator(it.nextIndex()); jt.hasNext(); ) {
 					CompCar comparisonCar = jt.next();
 
 					if (currCar.getPlayerId() == comparisonCar.getPlayerId()) {

@@ -1,10 +1,10 @@
 package org.openbakery.jinsim.response;
 
-import java.nio.BufferUnderflowException;
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.PacketType;
 import org.openbakery.jinsim.types.InSimVector;
+
+import java.nio.BufferUnderflowException;
+import java.nio.ByteBuffer;
 
 /**
  * @author Rob Heiser (jinsim@kerf.org)

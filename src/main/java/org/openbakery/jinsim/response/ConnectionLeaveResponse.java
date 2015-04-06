@@ -1,9 +1,9 @@
 package org.openbakery.jinsim.response;
 
+import org.openbakery.jinsim.PacketType;
+
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
-
-import org.openbakery.jinsim.PacketType;
 
 /**
  * @author Rob Heiser (jinsim@kerf.org)
@@ -12,26 +12,15 @@ import org.openbakery.jinsim.PacketType;
  */
 public class ConnectionLeaveResponse extends RaceTrackingResponse {
 
-	public Reason getReason() {
-		return reason;
-	}
-
 	private byte total;
-
 	private Reason reason = Reason.UNKOWN;
-
-	public enum Reason {
-		DISCONNECT,
-		TIMEOUT,
-		LOST_CONNECTION,
-		KICKED,
-		BANNED,
-		SECURITY,
-		UNKOWN;
-	}
 
 	ConnectionLeaveResponse() {
 		super(PacketType.CONNECTION_LEFT);
+	}
+
+	public Reason getReason() {
+		return reason;
 	}
 
 	public void construct(ByteBuffer buffer) throws BufferUnderflowException {
@@ -59,6 +48,16 @@ public class ConnectionLeaveResponse extends RaceTrackingResponse {
 
 	public void setTotal(byte total) {
 		this.total = total;
+	}
+
+	public enum Reason {
+		DISCONNECT,
+		TIMEOUT,
+		LOST_CONNECTION,
+		KICKED,
+		BANNED,
+		SECURITY,
+		UNKOWN;
 	}
 
 }

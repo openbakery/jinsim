@@ -30,10 +30,6 @@ public enum Car {
 		this.longname = longname;
 	}
 
-	public String getLongname() {
-		return longname;
-	}
-
 	public static Car getCarByLongName(String longname) {
 		for (Car car : Car.values()) {
 			if (car.getLongname().equalsIgnoreCase(longname)) {
@@ -50,6 +46,10 @@ public enum Car {
 			}
 		}
 		return null;
+	}
+
+	public String getLongname() {
+		return longname;
 	}
 
 }

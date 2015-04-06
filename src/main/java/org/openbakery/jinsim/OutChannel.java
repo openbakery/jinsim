@@ -1,20 +1,15 @@
 package org.openbakery.jinsim;
 
+import org.openbakery.jinsim.request.InSimRequest;
+import org.openbakery.jinsim.response.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.DatagramChannel;
-
-import org.openbakery.jinsim.request.InSimRequest;
-import org.openbakery.jinsim.response.InSimResponse;
-import org.openbakery.jinsim.response.OutGaugeResponse;
-import org.openbakery.jinsim.response.OutSimResponse;
-import org.openbakery.jinsim.response.ResponseFactory;
-import org.openbakery.jinsim.response.UnhandledPacketTypeException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class OutChannel implements Channel {
 
@@ -23,16 +18,11 @@ public class OutChannel implements Channel {
 	private static final int OUT_GAUGE_SIZE = 96;
 
 	private static final int OUT_SIM_SIZE = 68;
-
-	private Client client;
-
-	private boolean running;
-
 	static Logger log = LoggerFactory.getLogger(UDPChannel.class);
-
 	protected DatagramChannel datagramChannel;
-
 	protected InetSocketAddress address;
+	private Client client;
+	private boolean running;
 
 	public OutChannel(int port) throws IOException {
 		this(new InetSocketAddress(port));

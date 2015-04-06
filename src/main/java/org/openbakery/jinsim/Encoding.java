@@ -1,144 +1,19 @@
 package org.openbakery.jinsim;
 
-import java.io.ByteArrayOutputStream;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.ByteArrayOutputStream;
 
 public class Encoding {
 
 	private static Logger log = LoggerFactory.getLogger(Encoding.class);
-
-	public static String decodeString(byte[] byteArray) {
-		StringBuffer result = new StringBuffer();
-		char[] currentCodePage = codePageLatinToUnicode;
-
-		for (int i = 0; i < byteArray.length; i++) {
-			if (byteArray[i] == '^') {
-				if (i + 1 < byteArray.length) {
-					i++;
-					switch (byteArray[i]) {
-					case 'E':
-						currentCodePage = codePageCentralEuropeToUnicode;
-						break;
-					case 'C':
-						currentCodePage = codePageCyrillicToUnicode;
-						break;
-					case 'L':
-						currentCodePage = codePageLatinToUnicode;
-						break;
-					case 'G':
-						currentCodePage = codePageGreekToUnicode;
-						break;
-					case 'T':
-						currentCodePage = codePageTurkishToUnicode;
-						break;
-					case 'B':
-						currentCodePage = codePageBalticToUnicode;
-						break;
-					case 'J':
-						currentCodePage = codePageJapaneseToUnicode;
-						break;
-					case 's':
-						result.append('/');
-						break;
-					case 'd':
-						result.append('\\');
-						break;
-					case 'a':
-						result.append('*');
-						break;
-					case 'c':
-						result.append(':');
-						break;
-					case 'q':
-						result.append('?');
-						break;
-					case 't':
-						result.append('"');
-						break;
-					case '<':
-						result.append('<');
-						break;
-					case '>':
-						result.append('>');
-						break;
-					case '^':
-						result.append('^');
-						break;
-					case ':':
-						result.append("^:");
-						currentCodePage = codePageLatinToUnicode;
-						break;
-					default:
-						i--;
-						result.append("^");
-						break;
-					}
-				}
-			} else {
-				int index = (byteArray[i] & 0xFF);
-				if (index > 127 && index <= 256) {
-					result.append(Character.toString(currentCodePage[index]));
-				} else {
-					result.append(Character.toString((char) byteArray[i]));
-				}
-			}
-		}
-		return result.toString().trim();
-	}
-
-	public static byte[] encodeString(String text) {
-		ByteArrayOutputStream byteArrayStream = new ByteArrayOutputStream(text.length() * 2);
-
-		char[] currentCodePage = codePageLatinToUnicode;
-
-		char[][] codePages = { codePageLatinToUnicode, codePageCentralEuropeToUnicode, codePageCyrillicToUnicode, codePageGreekToUnicode, codePageTurkishToUnicode, codePageBalticToUnicode,
-				codePageJapaneseToUnicode };
-
-		for (int i = 0; i < text.length(); i++) {
-			char ch = text.charAt(i);
-			if (ch > 0 && ch < 128) {
-				byteArrayStream.write((byte) ch);
-			}
-			if (ch > 127) {
-				boolean found = false;
-				for (int k = 0; k < codePages.length && !found; k++) {
-					char[] codePage = codePages[k];
-					for (int j = 128; j < 256 && !found; j++) {
-						if (codePage[j] == ch) {
-							if (codePage != currentCodePage) {
-								byteArrayStream.write((byte) '^');
-								byteArrayStream.write((byte) codePage[0]);
-								currentCodePage = codePage;
-							}
-							byteArrayStream.write((byte) j);
-							found = true;
-						}
-					}
-				}
-				if (!found) {
-					log.warn("Cannot Encode character '" + ch + "'");
-				}
-
-			}
-
-		}
-		return byteArrayStream.toByteArray();
-	}
-
 	private static char[] codePageLatinToUnicode = new char[256];
-
 	private static char[] codePageCentralEuropeToUnicode = new char[256];
-
 	private static char[] codePageCyrillicToUnicode = new char[256];
-
 	private static char[] codePageGreekToUnicode = new char[256];
-
 	private static char[] codePageTurkishToUnicode = new char[256];
-
 	private static char[] codePageBalticToUnicode = new char[256];
-
 	private static char[] codePageJapaneseToUnicode = new char[256];
 
 	static {
@@ -955,5 +830,123 @@ public class Encoding {
 		codePageJapaneseToUnicode[221] = 65437;
 		codePageJapaneseToUnicode[222] = 65438;
 		codePageJapaneseToUnicode[223] = 65439;
+	}
+
+	public static String decodeString(byte[] byteArray) {
+		StringBuffer result = new StringBuffer();
+		char[] currentCodePage = codePageLatinToUnicode;
+
+		for (int i = 0; i < byteArray.length; i++) {
+			if (byteArray[i] == '^') {
+				if (i + 1 < byteArray.length) {
+					i++;
+					switch (byteArray[i]) {
+						case 'E':
+							currentCodePage = codePageCentralEuropeToUnicode;
+							break;
+						case 'C':
+							currentCodePage = codePageCyrillicToUnicode;
+							break;
+						case 'L':
+							currentCodePage = codePageLatinToUnicode;
+							break;
+						case 'G':
+							currentCodePage = codePageGreekToUnicode;
+							break;
+						case 'T':
+							currentCodePage = codePageTurkishToUnicode;
+							break;
+						case 'B':
+							currentCodePage = codePageBalticToUnicode;
+							break;
+						case 'J':
+							currentCodePage = codePageJapaneseToUnicode;
+							break;
+						case 's':
+							result.append('/');
+							break;
+						case 'd':
+							result.append('\\');
+							break;
+						case 'a':
+							result.append('*');
+							break;
+						case 'c':
+							result.append(':');
+							break;
+						case 'q':
+							result.append('?');
+							break;
+						case 't':
+							result.append('"');
+							break;
+						case '<':
+							result.append('<');
+							break;
+						case '>':
+							result.append('>');
+							break;
+						case '^':
+							result.append('^');
+							break;
+						case ':':
+							result.append("^:");
+							currentCodePage = codePageLatinToUnicode;
+							break;
+						default:
+							i--;
+							result.append("^");
+							break;
+					}
+				}
+			} else {
+				int index = (byteArray[i] & 0xFF);
+				if (index > 127 && index <= 256) {
+					result.append(Character.toString(currentCodePage[index]));
+				} else {
+					result.append(Character.toString((char) byteArray[i]));
+				}
+			}
+		}
+		return result.toString().trim();
+	}
+
+	public static byte[] encodeString(String text) {
+		ByteArrayOutputStream byteArrayStream = new ByteArrayOutputStream(text.length() * 2);
+
+		char[] currentCodePage = codePageLatinToUnicode;
+
+		char[][] codePages = {codePageLatinToUnicode, codePageCentralEuropeToUnicode, codePageCyrillicToUnicode, codePageGreekToUnicode, codePageTurkishToUnicode, codePageBalticToUnicode,
+						codePageJapaneseToUnicode};
+
+		for (int i = 0; i < text.length(); i++) {
+			char ch = text.charAt(i);
+			if (ch > 0 && ch < 128) {
+				byteArrayStream.write((byte) ch);
+			}
+			if (ch > 127) {
+				boolean found = false;
+				for (int k = 0; k < codePages.length && !found; k++) {
+					char[] codePage = codePages[k];
+					for (int j = 128; j < 256 && !found; j++) {
+						if (codePage[j] == ch) {
+							if (codePage != currentCodePage) {
+								byteArrayStream.write((byte) '^');
+								byteArrayStream.write((byte) codePage[0]);
+								currentCodePage = codePage;
+							}
+							byteArrayStream.write((byte) j);
+							found = true;
+						}
+					}
+				}
+				if (!found) {
+					log.warn("Cannot Encode character '" + ch + "'");
+				}
+
+			}
+
+		}
+		return byteArrayStream.toByteArray();
 	}
 }

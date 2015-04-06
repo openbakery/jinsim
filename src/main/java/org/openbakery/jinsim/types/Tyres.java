@@ -20,7 +20,7 @@ public class Tyres {
 
 	public static final byte TYRE_KNOBBLY = 7;
 
-	public static final byte NOT_CHANGED = (byte)0xff;
+	public static final byte NOT_CHANGED = (byte) 0xff;
 
 	private byte rearLeft;
 
@@ -32,7 +32,7 @@ public class Tyres {
 
 	public Tyres() {
 	}
-	
+
 	public Tyres(byte rearLeft, byte rearRight, byte frontLeft, byte frontRight) {
 		this.rearLeft = rearLeft;
 		this.rearRight = rearRight;
@@ -82,8 +82,8 @@ public class Tyres {
 
 	public String toString() {
 		return "Tyres [rearLeft=" + rearLeft + ", rearRight=" + rearRight
-				+ ", frontLeft=" + frontLeft + ", frontRight=" + frontRight
-				+ "]";
+						+ ", frontLeft=" + frontLeft + ", frontRight=" + frontRight
+						+ "]";
 	}
 
 }

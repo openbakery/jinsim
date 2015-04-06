@@ -1,26 +1,22 @@
 package org.openbakery.jinsim;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
 import org.openbakery.jinsim.request.InSimRequest;
 import org.openbakery.jinsim.request.TinyRequest;
 import org.openbakery.jinsim.response.ConnectionCloseResponse;
 import org.openbakery.jinsim.response.InSimResponse;
 import org.openbakery.jinsim.response.ResponseFactory;
 import org.openbakery.jinsim.response.UnhandledPacketTypeException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 public abstract class AbstractChannel implements Channel {
-	private static Logger log = LoggerFactory.getLogger(AbstractChannel.class);
-
 	protected static final int BUFFER_SIZE = 512;
-
 	private static final long TIMEOUT = 30000;
-
+	private static Logger log = LoggerFactory.getLogger(AbstractChannel.class);
 	protected Client client;
 
 	protected boolean running;

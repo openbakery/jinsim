@@ -7,5 +7,5 @@ public class AutocrossHit extends PlayerResponse {
 	public AutocrossHit() {
 		super(PacketType.AUTOCROSS_HIT);
 	}
-	
+
 }

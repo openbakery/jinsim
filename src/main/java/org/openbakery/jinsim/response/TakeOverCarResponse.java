@@ -1,14 +1,12 @@
 package org.openbakery.jinsim.response;
 
+import org.openbakery.jinsim.PacketType;
+
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 
-import org.openbakery.jinsim.PacketType;
-
 /**
- * 
  * @author Rene Pirringer (brilwing@liveforspeed.at)
- * 
  */
 public class TakeOverCarResponse extends PlayerResponse {
 

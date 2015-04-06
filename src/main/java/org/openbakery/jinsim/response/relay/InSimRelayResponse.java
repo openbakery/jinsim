@@ -4,7 +4,6 @@ import org.openbakery.jinsim.PacketType;
 import org.openbakery.jinsim.response.InSimResponse;
 
 
-
 /**
  * @author Rob Heiser (jinsim@kerf.org)
  * @since 0.001

@@ -51,11 +51,11 @@ public enum PacketType {
 	BUTTON_CLICKED(46),
 	BUTTON_TYPED(47),
 	CONTACT_CAR_CAR(50),
-  CONTACT_CAR_OBJECT(51),
-  REPORT_HLVC_VIOLATION(52),
-  PLAYER_CARS(53),
-  AUTOCROSS_OBJECTS(54),
-  ADMIN_COMMAND_REPORT(55),
+	CONTACT_CAR_OBJECT(51),
+	REPORT_HLVC_VIOLATION(52),
+	PLAYER_CARS(53),
+	AUTOCROSS_OBJECTS(54),
+	ADMIN_COMMAND_REPORT(55),
 	OUT_GAUGE(1000),
 	OUT_SIM(10001),
 	RELAY_HOST_LIST(252),
@@ -70,10 +70,6 @@ public enum PacketType {
 		this.id = id;
 	}
 
-	public int getId() {
-		return id;
-	}
-
 	public static PacketType getPacket(int id) {
 		for (PacketType type : PacketType.values()) {
 			if (type.id == id) {
@@ -83,9 +79,13 @@ public enum PacketType {
 		return null;
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	public boolean isRelayResponse() {
 		return this == RELAY_HOST_LIST || this == RELAY_HOST_LIST_INFO
-				|| this == RELAY_SELECT_HOST || this == RELAY_ERROR;
+						|| this == RELAY_SELECT_HOST || this == RELAY_ERROR;
 	}
 
 }

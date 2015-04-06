@@ -24,19 +24,15 @@ public enum Tiny {
 	RESTART(19),
 	AUTOCROSS_LAYOUT(20),
 	AUTOCROSS_HIT(21),
-    REPLAY_INFORMATION(22); // not implemented yet
+	REPLAY_INFORMATION(22); // not implemented yet
 
-	
+
 	private int type;
-	
+
 	Tiny(int type) {
 		this.type = type;
 	}
-	
-	public byte getType() {
-		return (byte)type;
-	}
-	
+
 	public static Tiny getTiny(int type) {
 		for (Tiny tiny : Tiny.values()) {
 			if (tiny.type == type) {
@@ -44,6 +40,10 @@ public enum Tiny {
 			}
 		}
 		throw new IllegalArgumentException("The specified id is not a tiny type: " + type);
+	}
+
+	public byte getType() {
+		return (byte) type;
 	}
 
 }

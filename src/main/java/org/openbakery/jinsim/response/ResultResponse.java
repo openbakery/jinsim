@@ -1,9 +1,9 @@
 package org.openbakery.jinsim.response;
 
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.PacketType;
 import org.openbakery.jinsim.types.InSimTime;
+
+import java.nio.ByteBuffer;
 
 /**
  * @author Rob Heiser (jinsim@kerf.org)
@@ -61,8 +61,8 @@ public class ResultResponse extends PlayerResponse {
 
 	public String toString() {
 		return super.toString() + ", User name: " + getUserName() + ", Nickname: " + getNickname() + ", Plate: " + getPlate() + ", Car name: " + getCarName() + ", Laps completed: " + getLapsDone()
-				+ ", Flags: " + getPlayerFlags() + ", Confirmation flags: " + getConfirmationFlags() + ", Pit stops: " + getNumberPitStops() + ", Total race time: " + getTotalTime() + ", Best lap time: "
-				+ getBestLapTime() + ", Result position: " + getResultPosition() + ", Total results: " + getTotalResults();
+						+ ", Flags: " + getPlayerFlags() + ", Confirmation flags: " + getConfirmationFlags() + ", Pit stops: " + getNumberPitStops() + ", Total race time: " + getTotalTime() + ", Best lap time: "
+						+ getBestLapTime() + ", Result position: " + getResultPosition() + ", Total results: " + getTotalResults();
 	}
 
 	public InSimTime getBestLapTime() {
@@ -79,9 +79,8 @@ public class ResultResponse extends PlayerResponse {
 
 	/**
 	 * Returns a short representation of the "player flags" set for the player that this ResultResponse represents.
-	 * 
+	 *
 	 * @return The flags set for this player as a short value.
-	 * 
 	 */
 	public short getPlayerFlags() {
 		return playerFlags;

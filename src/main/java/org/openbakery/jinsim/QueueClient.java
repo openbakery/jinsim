@@ -1,22 +1,19 @@
 package org.openbakery.jinsim;
 
+import org.openbakery.jinsim.request.InSimRequest;
+import org.openbakery.jinsim.response.InSimListener;
+import org.openbakery.jinsim.response.InSimResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openbakery.jinsim.request.InSimRequest;
-import org.openbakery.jinsim.response.InSimListener;
-import org.openbakery.jinsim.response.InSimResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class QueueClient extends Client {
 
-	private static Logger log = LoggerFactory.getLogger(QueueClient.class);
-
 	private static final int QUEUE_SIZE = 253;
-
+	private static Logger log = LoggerFactory.getLogger(QueueClient.class);
 	private ArrayList<InSimListener> listeners;
 
 	public QueueClient() {

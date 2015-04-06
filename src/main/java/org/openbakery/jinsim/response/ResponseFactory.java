@@ -1,14 +1,13 @@
 package org.openbakery.jinsim.response;
 
+import org.openbakery.jinsim.PacketType;
+import org.openbakery.jinsim.response.relay.HostListResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
-
-import org.openbakery.jinsim.PacketType;
-import org.openbakery.jinsim.response.relay.HostListResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Rob Heiser (jinsim@kerf.org)
@@ -16,10 +15,8 @@ import org.slf4j.LoggerFactory;
  */
 public class ResponseFactory {
 	public static final Logger log = LoggerFactory.getLogger(ResponseFactory.class);
-
-	private HashMap<PacketType, Class<? extends InSimResponse>> registeredTypes;
-
 	static private ResponseFactory instance;
+	private HashMap<PacketType, Class<? extends InSimResponse>> registeredTypes;
 
 	private ResponseFactory() {
 		registeredTypes = new HashMap<PacketType, Class<? extends InSimResponse>>(53);

@@ -1,10 +1,10 @@
 package org.openbakery.jinsim.response;
 
-import java.nio.BufferUnderflowException;
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.PacketType;
 import org.openbakery.jinsim.types.InSimTime;
+
+import java.nio.BufferUnderflowException;
+import java.nio.ByteBuffer;
 
 
 /**
@@ -13,50 +13,50 @@ import org.openbakery.jinsim.types.InSimTime;
  * @since 0.001
  */
 public class LapTimeResponse extends PlayerResponse {
-		
-	
-    private InSimTime time;     // lap time
-    private InSimTime totalTime;
-  	private int lapsDone;
-  	private int flags;
-  	private int penalty;
-  	private int numberPitStops;
-    
-    
-    LapTimeResponse() {
-        super(PacketType.LAP);
-    }
 
 
-    public void construct(ByteBuffer buffer) throws BufferUnderflowException {
-    	super.construct(buffer);
-    	setTime(new InSimTime(buffer));
-        totalTime = new InSimTime(buffer);
-        setLapsDone(buffer.getShort());
-        setFlags(buffer.getShort());
-        buffer.position(buffer.position()+1);
-        setPenalty(buffer.get());
-        setNumberPitStops(buffer.get());
-        buffer.position(buffer.position()+1);
-    }
+	private InSimTime time;     // lap time
+	private InSimTime totalTime;
+	private int lapsDone;
+	private int flags;
+	private int penalty;
+	private int numberPitStops;
 
-    public String toString() {
-        return super.toString() + 
-        ", Laps done: " + getLapsDone() + 
-        ", Flags: " + getFlags() + 
-        ", Penalty: " + getPenalty() +
-        ", Number of Pitstops: " + getNumberPitStops() +
-        ", Time: " + getTime() +
-        ", Total Time: " + totalTime;
-    }
 
-    public InSimTime getTime() {
-        return time;
-    }
+	LapTimeResponse() {
+		super(PacketType.LAP);
+	}
 
-    public void setTime(InSimTime time) {
-        this.time = time;
-    }
+
+	public void construct(ByteBuffer buffer) throws BufferUnderflowException {
+		super.construct(buffer);
+		setTime(new InSimTime(buffer));
+		totalTime = new InSimTime(buffer);
+		setLapsDone(buffer.getShort());
+		setFlags(buffer.getShort());
+		buffer.position(buffer.position() + 1);
+		setPenalty(buffer.get());
+		setNumberPitStops(buffer.get());
+		buffer.position(buffer.position() + 1);
+	}
+
+	public String toString() {
+		return super.toString() +
+						", Laps done: " + getLapsDone() +
+						", Flags: " + getFlags() +
+						", Penalty: " + getPenalty() +
+						", Number of Pitstops: " + getNumberPitStops() +
+						", Time: " + getTime() +
+						", Total Time: " + totalTime;
+	}
+
+	public InSimTime getTime() {
+		return time;
+	}
+
+	public void setTime(InSimTime time) {
+		this.time = time;
+	}
 
 	public int getFlags() {
 		return flags;

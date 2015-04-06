@@ -7,34 +7,34 @@ import org.openbakery.jinsim.types.CompCar;
  * @since 0.001
  */
 public class OutOfControlEvent implements RaceEvent {
-    protected CompCar car;
-    protected float angularDelta;
-    
-    public OutOfControlEvent(CompCar c, float delta) {
-        setCar(c);
-        setAngularDelta(delta);
-    }
+	protected CompCar car;
+	protected float angularDelta;
 
-    public CompCar getCar() {
-        return car;
-    }
+	public OutOfControlEvent(CompCar c, float delta) {
+		setCar(c);
+		setAngularDelta(delta);
+	}
 
-    private void setCar(CompCar car) {
-        this.car = car;
-    }
+	public CompCar getCar() {
+		return car;
+	}
 
-    public float getAngularDelta() {
-        return angularDelta;
-    }
+	private void setCar(CompCar car) {
+		this.car = car;
+	}
 
-    public void setAngularDelta(float angularDelta) {
-        this.angularDelta = angularDelta;
-    }
-    
-    public String toString() {
-        String retval = "";
-        
-        retval += "Car " + getCar().getPlayerId() + " may be going out of control (angle: " + getAngularDelta() + " speed: " + getCar().getSpeed() + ")";
-        return retval;
-    }
+	public float getAngularDelta() {
+		return angularDelta;
+	}
+
+	public void setAngularDelta(float angularDelta) {
+		this.angularDelta = angularDelta;
+	}
+
+	public String toString() {
+		String retval = "";
+
+		retval += "Car " + getCar().getPlayerId() + " may be going out of control (angle: " + getAngularDelta() + " speed: " + getCar().getSpeed() + ")";
+		return retval;
+	}
 }

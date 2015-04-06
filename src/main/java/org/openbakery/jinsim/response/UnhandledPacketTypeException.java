@@ -6,16 +6,15 @@ package org.openbakery.jinsim.response;
  */
 public class UnhandledPacketTypeException extends Exception {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Construct an exception for an unknown packet type with a message describing the reason.
-     * 
-     * @param msg
-     *            a brief message about why this exception was thrown
-     */
-    public UnhandledPacketTypeException(String msg) {
-        super(msg);
-    }
+	/**
+	 * Construct an exception for an unknown packet type with a message describing the reason.
+	 *
+	 * @param msg a brief message about why this exception was thrown
+	 */
+	public UnhandledPacketTypeException(String msg) {
+		super(msg);
+	}
 
 }

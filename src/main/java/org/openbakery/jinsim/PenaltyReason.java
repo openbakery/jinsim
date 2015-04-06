@@ -12,15 +12,11 @@ public enum PenaltyReason {
 	NUM(7);
 
 	private int id;
-	
+
 	PenaltyReason(int id) {
 		this.id = id;
 	}
-	
-	public int getId() {
-		return id;
-	}
-	
+
 	public static PenaltyReason getPenaltyReason(byte id) {
 		int givenId = (id & 0xFF);
 		for (PenaltyReason type : PenaltyReason.values()) {
@@ -29,6 +25,10 @@ public enum PenaltyReason {
 			}
 		}
 		throw new IllegalArgumentException("The specified id is not a valid penalty reason: " + id);
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }

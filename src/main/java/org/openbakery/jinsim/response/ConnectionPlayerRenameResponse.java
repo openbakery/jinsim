@@ -1,9 +1,9 @@
 package org.openbakery.jinsim.response;
 
+import org.openbakery.jinsim.PacketType;
+
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
-
-import org.openbakery.jinsim.PacketType;
 
 /**
  * @author Rob Heiser (jinsim@kerf.org)
@@ -12,42 +12,42 @@ import org.openbakery.jinsim.PacketType;
  */
 public class ConnectionPlayerRenameResponse extends RaceTrackingResponse {
 
-		
-    private String newName; // new name (24 len)
-    private String plate;   // number plate - NO ZERO AT END! (8 len)
 
-    ConnectionPlayerRenameResponse() {
-        super(PacketType.CONNECTION_PLAYER_RENAMED);
-    }
+	private String newName; // new name (24 len)
+	private String plate;   // number plate - NO ZERO AT END! (8 len)
 
-    public void construct(ByteBuffer buffer) throws BufferUnderflowException {
-    	super.construct(buffer);
-    	setNewName(getString(buffer, 24));
-    	setPlate(getString(buffer, 8));
-    }
+	ConnectionPlayerRenameResponse() {
+		super(PacketType.CONNECTION_PLAYER_RENAMED);
+	}
 
-    public String toString() {
-        String retval = super.toString();
-        retval += "New name: " + getNewName();
-        retval += "Plate: " + getPlate();
-        return retval;
-    }
+	public void construct(ByteBuffer buffer) throws BufferUnderflowException {
+		super.construct(buffer);
+		setNewName(getString(buffer, 24));
+		setPlate(getString(buffer, 8));
+	}
 
-    public String getNewName() {
-        return newName;
-    }
+	public String toString() {
+		String retval = super.toString();
+		retval += "New name: " + getNewName();
+		retval += "Plate: " + getPlate();
+		return retval;
+	}
 
-    public void setNewName(String newName) {
-        this.newName = newName;
-    }
+	public String getNewName() {
+		return newName;
+	}
+
+	public void setNewName(String newName) {
+		this.newName = newName;
+	}
 
 
-    public String getPlate() {
-        return plate;
-    }
+	public String getPlate() {
+		return plate;
+	}
 
-    public void setPlate(String plate) {
-        this.plate = plate;
-    }
+	public void setPlate(String plate) {
+		this.plate = plate;
+	}
 
 }

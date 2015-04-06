@@ -1,21 +1,19 @@
 package org.openbakery.jinsim.response;
 
-import java.nio.BufferUnderflowException;
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.PacketType;
 import org.openbakery.jinsim.Small;
 
+import java.nio.BufferUnderflowException;
+import java.nio.ByteBuffer;
+
 public class SmallResponse extends InSimResponse {
-	
+
+	private Small type;
+	private int value;
 	public SmallResponse() {
 		super(PacketType.SMALL);
 	}
 
-	private Small type;
-	private int value;
-	
-	
 	@Override
 	public void construct(ByteBuffer buffer) throws BufferUnderflowException {
 		super.construct(buffer);

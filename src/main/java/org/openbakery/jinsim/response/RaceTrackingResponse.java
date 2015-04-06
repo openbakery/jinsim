@@ -1,18 +1,17 @@
 package org.openbakery.jinsim.response;
 
+import org.openbakery.jinsim.PacketType;
+
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
-
-import org.openbakery.jinsim.PacketType;
 
 /**
  * The base class for responses from InSim related to race tracking. Race tracking is turned on during intialization with the {@link org.openbakery.jinsim.request.InitRequest} type ("ISI"). It will
  * periodically send information about the race to the client. All responses of this type are acknowledged automatically with and {@link org.openbakery.request.AckRequest} with the proper value field filled
  * in.
- * 
+ *
  * @author Rob Heiser (jinsim@kerf.org)
  * @since 0.001
- * 
  */
 abstract public class RaceTrackingResponse extends InSimResponse {
 
@@ -111,7 +110,6 @@ abstract public class RaceTrackingResponse extends InSimResponse {
 	}
 
 	/**
-	 * 
 	 * @return the connection id
 	 */
 	public int getConnectionId() {

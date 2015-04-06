@@ -38,6 +38,9 @@
 
 package org.openbakery.jinsim;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -46,29 +49,21 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Thread that waits for responses from the LFS server, and routes them to any objects that are listening for them.
- * 
+ *
  * @author Rob Heiser (jinsim@kerf.org)
- * @since 0.001
  * @see org.openbakery.jinsim.UDPClient
  * @see org.openbakery.jinsim.InSimResponse
- * 
+ * @since 0.001
  */
 public class UDPChannel extends AbstractChannel {
 
-	private ByteBuffer cacheBuffer = ByteBuffer.allocate(1024);
-
 	private static Logger log = LoggerFactory.getLogger(UDPChannel.class);
-
 	protected DatagramChannel datagramChannel;
-
-	private MulticastSocket multicastSocket;
-
 	protected InetSocketAddress address;
+	private ByteBuffer cacheBuffer = ByteBuffer.allocate(1024);
+	private MulticastSocket multicastSocket;
 
 	public UDPChannel(String host, int port, boolean multicast) throws IOException {
 		this(new InetSocketAddress(host, port), multicast);
@@ -80,13 +75,10 @@ public class UDPChannel extends AbstractChannel {
 
 	/**
 	 * Construct a Receiver that is ready to communicate with a LFS server at a particular address.
-	 * 
-	 * @param channel
-	 *          The DatagramChannel that the communication will take place on.
-	 * @param address
-	 *          A network address to send acknowledgement (ACK) packets to.
-	 * @param multicast
-	 *          Receiver will relay the packets received to a multicast address if multicast is true.
+	 *
+	 * @param channel   The DatagramChannel that the communication will take place on.
+	 * @param address   A network address to send acknowledgement (ACK) packets to.
+	 * @param multicast Receiver will relay the packets received to a multicast address if multicast is true.
 	 * @throws IOException
 	 */
 	public UDPChannel(InetSocketAddress address, boolean multicast) throws IOException {

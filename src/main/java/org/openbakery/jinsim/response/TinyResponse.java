@@ -1,15 +1,15 @@
 package org.openbakery.jinsim.response;
 
-import java.nio.BufferUnderflowException;
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.PacketType;
 import org.openbakery.jinsim.Tiny;
+
+import java.nio.BufferUnderflowException;
+import java.nio.ByteBuffer;
 
 public class TinyResponse extends InSimResponse {
 
 	private Tiny type;
-	
+
 	public TinyResponse() {
 		super(PacketType.TINY);
 	}
@@ -19,7 +19,7 @@ public class TinyResponse extends InSimResponse {
 		super.construct(buffer);
 		type = Tiny.getTiny(buffer.get());
 	}
-	
+
 	public String toString() {
 		return super.toString() + ", type: " + type;
 	}
@@ -27,5 +27,5 @@ public class TinyResponse extends InSimResponse {
 	public Tiny getType() {
 		return type;
 	}
-	
+
 }

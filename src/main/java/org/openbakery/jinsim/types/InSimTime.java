@@ -7,13 +7,12 @@ import java.text.DecimalFormat;
 /**
  * InSimTime is a compressed time representation used in some InSim messages. It
  * uses one byte for each time unit from hours down to thousandths of a second.
- * 
+ *
  * @author Rob Heiser (jinsim@kerf.org)
- * @since 0.001
  * @see org.openbakery.jinsim.response.LapTimeResponse
  * @see org.openbakery.jinsim.response.ResultResponse
  * @see org.openbakery.jinsim.response.SplitTimeResponse
- * 
+ * @since 0.001
  */
 public class InSimTime {
 
@@ -26,8 +25,7 @@ public class InSimTime {
 	private int time;
 
 	/**
-	 * @param buffer
-	 *            The buffer to use for construction of an InSimTime object.
+	 * @param buffer The buffer to use for construction of an InSimTime object.
 	 * @throws java.nio.BufferUnderflowException
 	 */
 	public InSimTime(ByteBuffer buffer) throws BufferUnderflowException {
@@ -36,6 +34,20 @@ public class InSimTime {
 
 	public InSimTime(int time) {
 		this.time = time;
+	}
+
+	public static String toString(int time) {
+		return toString(time, false);
+	}
+
+	public static String toString(int time, boolean sign) {
+		if (!sign) {
+			return new InSimTime(time).toString();
+		}
+		if (time > 0) {
+			return "^2-" + new InSimTime(time).toString();
+		}
+		return "^1+" + new InSimTime(-time).toString();
 	}
 
 	@Override
@@ -60,23 +72,9 @@ public class InSimTime {
 		return result.toString();
 	}
 
-	public static String toString(int time) {
-		return toString(time, false);
-	}
-
-	public static String toString(int time, boolean sign) {
-		if (!sign) {
-			return new InSimTime(time).toString();
-		}
-		if (time > 0) {
-			return "^2-" + new InSimTime(time).toString();
-		}
-		return "^1+" + new InSimTime(-time).toString();
-	}
-
 	/**
 	 * Get the hours component
-	 * 
+	 *
 	 * @return The value of the hours position.
 	 */
 	public int getHours() {
@@ -85,7 +83,7 @@ public class InSimTime {
 
 	/**
 	 * Get the minutes component
-	 * 
+	 *
 	 * @return The value of the minutes position.
 	 */
 	public int getMinutes() {
@@ -94,7 +92,7 @@ public class InSimTime {
 
 	/**
 	 * Get the seconds component
-	 * 
+	 *
 	 * @return The value of the seconds position.
 	 */
 	public int getSeconds() {
@@ -103,7 +101,7 @@ public class InSimTime {
 
 	/**
 	 * Get the thousandths (of a second) component
-	 * 
+	 *
 	 * @return The value of the thousandths (of a second) position.
 	 */
 	public int getThousandths() {

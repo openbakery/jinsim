@@ -1,14 +1,12 @@
 package org.openbakery.jinsim.response;
 
+import org.openbakery.jinsim.PacketType;
+
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 
-import org.openbakery.jinsim.PacketType;
-
 /**
- * 
  * @author Rene Pirringer (brilwing@liveforspeed.at)
- * 
  */
 public class HiddenMessageResponse extends InSimResponse {
 
@@ -17,6 +15,10 @@ public class HiddenMessageResponse extends InSimResponse {
 	private byte connectionId;
 
 	private byte playerId;
+
+	public HiddenMessageResponse() {
+		super(PacketType.HIDDEN_MESSAGE);
+	}
 
 	public int getConnectionId() {
 		return connectionId & 0xFF;
@@ -28,10 +30,6 @@ public class HiddenMessageResponse extends InSimResponse {
 
 	public int getPlayerId() {
 		return playerId & 0xFF;
-	}
-
-	public HiddenMessageResponse() {
-		super(PacketType.HIDDEN_MESSAGE);
 	}
 
 	@Override

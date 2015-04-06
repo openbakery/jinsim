@@ -6,12 +6,11 @@ import java.nio.ByteBuffer;
 /**
  * The RaceLaps class holds information about the current lap as given in some response packets. It uses the class to hold more than just the lap number, it also indicates if the laps are during
  * practice, or if it's a time based race, rather than a lap based race, the number of hours the race has been run.
- * 
+ *
  * @author Rob Heiser (jinsim@kerf.org)
- * @since 0.001
  * @see org.openbakery.jinsim.response.StateResponse
  * @see org.openbakery.jinsim.response.RaceStartResponse
- * 
+ * @since 0.001
  */
 public class RaceLaps {
 	boolean isPractice;

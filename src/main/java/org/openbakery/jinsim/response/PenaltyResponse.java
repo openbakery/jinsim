@@ -1,10 +1,10 @@
 package org.openbakery.jinsim.response;
 
-import java.nio.BufferUnderflowException;
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.PacketType;
 import org.openbakery.jinsim.PenaltyReason;
+
+import java.nio.BufferUnderflowException;
+import java.nio.ByteBuffer;
 
 public class PenaltyResponse extends PlayerResponse {
 
@@ -14,12 +14,12 @@ public class PenaltyResponse extends PlayerResponse {
 
 	private PenaltyReason reason;
 
-	public PenaltyReason getReason() {
-		return reason;
-	}
-
 	public PenaltyResponse() {
 		super(PacketType.PENALTY);
+	}
+
+	public PenaltyReason getReason() {
+		return reason;
 	}
 
 	public void construct(ByteBuffer buffer) throws BufferUnderflowException {

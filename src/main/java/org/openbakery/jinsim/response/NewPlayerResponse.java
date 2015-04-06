@@ -1,11 +1,11 @@
 package org.openbakery.jinsim.response;
 
-import java.nio.BufferUnderflowException;
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.Car;
 import org.openbakery.jinsim.PacketType;
 import org.openbakery.jinsim.types.Tyres;
+
+import java.nio.BufferUnderflowException;
+import java.nio.ByteBuffer;
 
 public class NewPlayerResponse extends PlayerResponse {
 
@@ -108,8 +108,8 @@ public class NewPlayerResponse extends PlayerResponse {
 	@Override
 	public String toString() {
 		return super.toString() + ", uniqueId: " + connectionId + ", playerType: " + playerType + ", playerFlags: " + playerFlags + ", playerName: " + playerName + ", numberPlate: " + numberPlate
-				+ ", car: " + car + ", skinName: " + skinName + ", tyres: " + tyres + ", addedMass: " + addedMass + ", intakeRestriction: " + intakeRestriction + ", model: " + model + ", passengers: "
-				+ passengers + ", numberInRace: " + numberInRace;
+						+ ", car: " + car + ", skinName: " + skinName + ", tyres: " + tyres + ", addedMass: " + addedMass + ", intakeRestriction: " + intakeRestriction + ", model: " + model + ", passengers: "
+						+ passengers + ", numberInRace: " + numberInRace;
 	}
 
 	public int getConnectionId() {
@@ -117,7 +117,7 @@ public class NewPlayerResponse extends PlayerResponse {
 	}
 
 	public void setConnectionId(int uniqueId) {
-		this.connectionId = (byte)(uniqueId & 0xFF);
+		this.connectionId = (byte) (uniqueId & 0xFF);
 	}
 
 	public byte getModel() {

@@ -1,10 +1,10 @@
 package org.openbakery.jinsim.response;
 
-import java.nio.BufferUnderflowException;
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.PacketType;
 import org.openbakery.jinsim.request.ButtonSubtype;
+
+import java.nio.BufferUnderflowException;
+import java.nio.ByteBuffer;
 
 public class ButtonFunctionResponse extends InSimResponse {
 
@@ -13,6 +13,10 @@ public class ButtonFunctionResponse extends InSimResponse {
 	private byte connectionId;
 
 	private byte clickId;
+
+	public ButtonFunctionResponse() {
+		super(PacketType.BUTTON_FUNCTION);
+	}
 
 	@Override
 	public void construct(ByteBuffer buffer) throws BufferUnderflowException {
@@ -33,10 +37,6 @@ public class ButtonFunctionResponse extends InSimResponse {
 
 	public ButtonSubtype getSubtype() {
 		return subtype;
-	}
-
-	public ButtonFunctionResponse() {
-		super(PacketType.BUTTON_FUNCTION);
 	}
 
 }

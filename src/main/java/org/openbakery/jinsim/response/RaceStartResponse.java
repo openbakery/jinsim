@@ -1,9 +1,9 @@
 package org.openbakery.jinsim.response;
 
+import org.openbakery.jinsim.*;
+
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
-
-import org.openbakery.jinsim.*;
 
 public class RaceStartResponse extends InSimResponse {
 
@@ -48,9 +48,9 @@ public class RaceStartResponse extends InSimResponse {
 
 	private int split3NodeIndex;
 
-    private int numberOfCheckpoints;
+	private int numberOfCheckpoints;
 
-    private Timing timing;
+	private Timing timing;
 
 	public RaceStartResponse() {
 		super(PacketType.RACE_START);
@@ -121,19 +121,17 @@ public class RaceStartResponse extends InSimResponse {
 		qualifingMinutes = buffer.get();
 		numberOfPlayers = buffer.get();
 
-        int timingInfo = buffer.get() & 0xFF;
-        if ( (timingInfo & 0x40) > 0)
-        {
-            timing = Timing.STANDARD;
-        } else if ( (timingInfo & 0x80) > 0) {
-            timing = Timing.CUSTOM;
-        } else {
-            timing = Timing.NO;
-        }
+		int timingInfo = buffer.get() & 0xFF;
+		if ((timingInfo & 0x40) > 0) {
+			timing = Timing.STANDARD;
+		} else if ((timingInfo & 0x80) > 0) {
+			timing = Timing.CUSTOM;
+		} else {
+			timing = Timing.NO;
+		}
 
-        numberOfCheckpoints = timingInfo & 0x03;
+		numberOfCheckpoints = timingInfo & 0x03;
 
-        
 
 		//buffer.position(buffer.position() + 1);
 		String trackname = getString(buffer, 6);
@@ -152,8 +150,8 @@ public class RaceStartResponse extends InSimResponse {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return super.toString() + ", raceLaps: " + raceLaps + ", qualifingMinutes: " + qualifingMinutes + ", numberOfPlayers: " + numberOfPlayers + ", track: " + track + ", weather: " + weather
-				+ ", wind: " + wind + ", raceFlags: " + raceFlags + ", numberOfNodes: " + numberOfNodes + ", finishLineNodeIndex: " + finishLineNodeIndex + ", split1NodeIndex: " + split1NodeIndex
-				+ ", split2NodeIndex: " + split2NodeIndex + ", split3NodeIndex: " + split3NodeIndex;
+						+ ", wind: " + wind + ", raceFlags: " + raceFlags + ", numberOfNodes: " + numberOfNodes + ", finishLineNodeIndex: " + finishLineNodeIndex + ", split1NodeIndex: " + split1NodeIndex
+						+ ", split2NodeIndex: " + split2NodeIndex + ", split3NodeIndex: " + split3NodeIndex;
 	}
 
 	public boolean canVote() {

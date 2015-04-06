@@ -10,13 +10,13 @@ public enum Small {
 	TIME_STEP(5),
 	RACE_TIME_PACKET(6),
 	NODE_LAP_INTERVAL(7);
-	
+
 	private byte type;
-	
+
 	Small(int type) {
-		this.type = (byte)type;
+		this.type = (byte) type;
 	}
-	
+
 	public static Small getSmall(byte type) {
 		for (Small small : Small.values()) {
 			if (small.type == type) {
@@ -25,9 +25,9 @@ public enum Small {
 		}
 		throw new IllegalArgumentException("The specified id is not a small type: " + type);
 	}
-	
+
 	public byte getType() {
-		return (byte)type;
+		return (byte) type;
 	}
 
 }

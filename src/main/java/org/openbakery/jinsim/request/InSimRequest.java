@@ -1,51 +1,50 @@
 package org.openbakery.jinsim.request;
 
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.Encoding;
 import org.openbakery.jinsim.PacketType;
 
+import java.nio.ByteBuffer;
+
 /**
  * An abstract class for client requests to a LFS server.
- * 
+ *
  * @author rob
  * @since 0.001
- * 
  */
 abstract public class InSimRequest {
-	
+
 	//private static Log log = LogFactory.getLog(InSimRequest.class);
-	
-    
-    private PacketType   type;
-    protected int         size;
-    protected byte      requestInfo;
 
-    public InSimRequest(PacketType type, int size) {
-      this.type = type;
-      this.size = size;
-      this.requestInfo = 0;
-    }
 
-    /**
-     * Get the type of request this is, as defined in the InSim.txt documentation.
-     * 
-     * @return a String representation of the packet type, as defined in the InSim.txt documentation.
-     */
-    public PacketType getType() {
-        return type;
-    }
+	protected int size;
+	protected byte requestInfo;
+	private PacketType type;
 
-    public void assemble(ByteBuffer byteBuffer) {
-    	byteBuffer.clear();
-        byteBuffer.put((byte)size);
-        byteBuffer.put((byte)type.getId());
-        byteBuffer.put(requestInfo);
-    }
+	public InSimRequest(PacketType type, int size) {
+		this.type = type;
+		this.size = size;
+		this.requestInfo = 0;
+	}
 
-    public String toString() {
-        return "InSimRequest of type " + type + ", requestInfo: " + requestInfo;
-    }
+	/**
+	 * Get the type of request this is, as defined in the InSim.txt documentation.
+	 *
+	 * @return a String representation of the packet type, as defined in the InSim.txt documentation.
+	 */
+	public PacketType getType() {
+		return type;
+	}
+
+	public void assemble(ByteBuffer byteBuffer) {
+		byteBuffer.clear();
+		byteBuffer.put((byte) size);
+		byteBuffer.put((byte) type.getId());
+		byteBuffer.put(requestInfo);
+	}
+
+	public String toString() {
+		return "InSimRequest of type " + type + ", requestInfo: " + requestInfo;
+	}
 
 	public void assembleString(ByteBuffer data, String string, int length) {
 		byte[] destination = new byte[length];
@@ -67,5 +66,5 @@ abstract public class InSimRequest {
 	public int getSize() {
 		return size;
 	}
-    
+
 }

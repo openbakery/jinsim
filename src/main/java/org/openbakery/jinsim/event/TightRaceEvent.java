@@ -7,35 +7,35 @@ import org.openbakery.jinsim.types.CompCar;
  * @since 0.001
  */
 public class TightRaceEvent implements RaceEvent {
-    protected CompCar leadCar;
-    protected CompCar challengerCar;
-    
-    public TightRaceEvent(CompCar lead, CompCar challenger) {
-        setLeadCar(lead);
-        setChallengerCar(challenger);
-    }
+	protected CompCar leadCar;
+	protected CompCar challengerCar;
 
-    public CompCar getLeadCar() {
-        return leadCar;
-    }
+	public TightRaceEvent(CompCar lead, CompCar challenger) {
+		setLeadCar(lead);
+		setChallengerCar(challenger);
+	}
 
-    private void setLeadCar(CompCar car) {
-        this.leadCar = car;
-    }
+	public CompCar getLeadCar() {
+		return leadCar;
+	}
 
-    public CompCar getChallengerCar() {
-        return challengerCar;
-    }
+	private void setLeadCar(CompCar car) {
+		this.leadCar = car;
+	}
 
-    private void setChallengerCar(CompCar challengerCar) {
-        this.challengerCar = challengerCar;
-    }
+	public CompCar getChallengerCar() {
+		return challengerCar;
+	}
 
-    public String toString() {
-        String retval = "";
-        
-        retval += "Car " + getLeadCar().getPlayerId() + " is in a tight race with Car " + getChallengerCar().getPlayerId();
-        
-        return retval;
-    }
+	private void setChallengerCar(CompCar challengerCar) {
+		this.challengerCar = challengerCar;
+	}
+
+	public String toString() {
+		String retval = "";
+
+		retval += "Car " + getLeadCar().getPlayerId() + " is in a tight race with Car " + getChallengerCar().getPlayerId();
+
+		return retval;
+	}
 }

@@ -1,44 +1,28 @@
 package org.openbakery.jinsim.request;
 
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.PacketType;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.ByteBuffer;
+
 public class ButtonRequest extends InSimRequest {
 
-	private static Logger log = LoggerFactory.getLogger(ButtonRequest.class);
-
 	private static final int TEXT_LENGTH = 240;
-
 	public static byte BUTTON_STYLE_LIGHT_GREY = 0;
-
 	public static byte BUTTON_STYLE_YELLOW = 1;
-
 	public static byte BUTTON_STYLE_BLACK = 2;
-
 	public static byte BUTTON_STYLE_WHITE = 3;
-
 	public static byte BUTTON_STYLE_GREEN = 4;
-
 	public static byte BUTTON_STYLE_RED = 5;
-
 	public static byte BUTTON_STYLE_BLUE = 6;
-
 	public static byte BUTTON_STYLE_GREY = 7;
-
 	public static byte BUTTON_STYLE_CLICK = 8;
-
 	public static byte BUTTON_STYLE_LIGHT = 16;
-
 	public static byte BUTTON_STYLE_DARK = 32;
-
 	public static byte BUTTON_STYLE_LEFT = 64;
-
 	public static byte BUTTON_STYLE_RIGHT = -128;
-
+	private static Logger log = LoggerFactory.getLogger(ButtonRequest.class);
 	private int connectionId;
 
 	private byte clickId;
@@ -72,7 +56,7 @@ public class ButtonRequest extends InSimRequest {
 		}
 		super.assemble(buffer);
 
-		buffer.put((byte)connectionId);
+		buffer.put((byte) connectionId);
 		buffer.put(clickId);
 		buffer.put(inst);
 		buffer.put((byte) buttonStyle);

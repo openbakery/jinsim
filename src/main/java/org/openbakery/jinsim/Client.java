@@ -38,30 +38,27 @@
 
 package org.openbakery.jinsim;
 
-import java.io.IOException;
-
 import org.openbakery.jinsim.request.InSimRequest;
 import org.openbakery.jinsim.request.InitRequest;
 import org.openbakery.jinsim.request.SmallRequest;
 import org.openbakery.jinsim.request.TinyRequest;
 import org.openbakery.jinsim.response.InSimResponse;
 
+import java.io.IOException;
+
 /**
  * Primary class to use when creating a client that connects to a LFS. After
  * constructing the class and setting any options, call connect() to connect to
  * the chosen InSim machine and port.
- * 
+ *
  * @author Rob Heiser
  * @author Rene Pirringer (brilwing@liveforspeed.at)
  * @since 0.5
- * 
  */
 public abstract class Client {
 
-	private Channel channel;
-
 	protected InitRequest initRequest;
-
+	private Channel channel;
 	private boolean requestVersion;
 
 	private short interval;
@@ -69,6 +66,11 @@ public abstract class Client {
 	private int udpPort;
 
 	private OutChannel outChannel;
+
+	/**
+	 */
+	public Client() {
+	}
 
 	public short getInterval() {
 		return interval;
@@ -78,24 +80,19 @@ public abstract class Client {
 		this.interval = interval;
 	}
 
-	/**
-	 */
-	public Client() {
-	}
-
 	public void connect(Channel channel, String password, String name)
-			throws IOException {
+					throws IOException {
 		connect(channel, password, name, (short) 0, 0, 0);
 	}
 
 	public void connect(Channel channel, String password, String name,
-			short flags, int interval, int udpPort) throws IOException {
+											short flags, int interval, int udpPort) throws IOException {
 		connect(channel, password, name, flags, interval, udpPort, (char) 0);
 	}
 
 	public void connect(Channel channel, String password, String name,
-			short flags, int interval, int udpPort, char prefix)
-			throws IOException {
+											short flags, int interval, int udpPort, char prefix)
+					throws IOException {
 		this.channel = channel;
 		this.udpPort = udpPort;
 		channel.setClient(this);
@@ -131,14 +128,14 @@ public abstract class Client {
 	public void enableOutGauge(int interval) throws IOException {
 		enableOutChannel();
 		SmallRequest request = new SmallRequest(Small.START_SENDING_GAUGES,
-				interval);
+						interval);
 		send(request);
 	}
 
 	public void enableOutSim(int interval) throws IOException {
 		enableOutChannel();
 		SmallRequest request = new SmallRequest(Small.START_SENDING_POSITION,
-				interval);
+						interval);
 		send(request);
 	}
 
@@ -152,7 +149,7 @@ public abstract class Client {
 
 	/**
 	 * Closes the connection to LFS, and stops listening for responses.
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	public void close() throws IOException {
@@ -162,21 +159,19 @@ public abstract class Client {
 				disableOutSim();
 				outChannel.close();
 			}
-            send(new TinyRequest(Tiny.CLOSE));
+			send(new TinyRequest(Tiny.CLOSE));
 			channel.close();
 		}
 	}
 
 	/**
 	 * Sends a request to LFS.
-	 * 
-	 * @param packet
-	 *            A request to send to LFS, which may have a corresponding reply
-	 *            or may not. If you are expecting a reply you should add a
-	 *            listener for the reply type before sending the request. The
-	 *            response will be handled asynchronously, so pairing requests
-	 *            with replies is difficult, if not impossible.
-	 * 
+	 *
+	 * @param packet A request to send to LFS, which may have a corresponding reply
+	 *               or may not. If you are expecting a reply you should add a
+	 *               listener for the reply type before sending the request. The
+	 *               response will be handled asynchronously, so pairing requests
+	 *               with replies is difficult, if not impossible.
 	 * @throws IOException
 	 * @see sf.net.jinsim.request.InSimRequest
 	 */

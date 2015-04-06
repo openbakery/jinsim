@@ -5,7 +5,7 @@ package org.openbakery.jinsim;
  * Date: 01.07.11
  */
 public enum Timing {
-    STANDARD,
-    CUSTOM,
-    NO;
+	STANDARD,
+	CUSTOM,
+	NO;
 }

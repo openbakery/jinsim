@@ -48,9 +48,9 @@ import org.openbakery.jinsim.request.InSimRequest;
  */
 public abstract class InSimRelayRequest extends InSimRequest {
 
-	
+
 	public InSimRelayRequest(PacketType type, byte size) {
-    	super(type, size);
+		super(type, size);
 	}
 
 

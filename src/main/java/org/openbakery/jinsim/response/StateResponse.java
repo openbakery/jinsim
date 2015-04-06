@@ -1,13 +1,13 @@
 package org.openbakery.jinsim.response;
 
-import java.nio.BufferUnderflowException;
-import java.nio.ByteBuffer;
-
 import org.openbakery.jinsim.PacketType;
 import org.openbakery.jinsim.Track;
 import org.openbakery.jinsim.Weather;
 import org.openbakery.jinsim.Wind;
 import org.openbakery.jinsim.types.RaceLaps;
+
+import java.nio.BufferUnderflowException;
+import java.nio.ByteBuffer;
 
 /**
  * @author Rob Heiser (jinsim@kerf.org)
@@ -126,7 +126,7 @@ public class StateResponse extends InSimResponse {
 
 	public String getCameraString() {
 		try {
-			String[] cameras = { "Arcade", "Helicopter", "TV", "Driver", "Custom" };
+			String[] cameras = {"Arcade", "Helicopter", "TV", "Driver", "Custom"};
 
 			return cameras[getCamera()];
 		} catch (ArrayIndexOutOfBoundsException e) {
@@ -200,7 +200,7 @@ public class StateResponse extends InSimResponse {
 
 	public String getRaceInProgressString() {
 		try {
-			String[] raceStrings = { "No", "Racing", "Qualifying" };
+			String[] raceStrings = {"No", "Racing", "Qualifying"};
 
 			return raceStrings[getRaceInProgress()];
 		} catch (ArrayIndexOutOfBoundsException e) {
@@ -228,12 +228,12 @@ public class StateResponse extends InSimResponse {
 		return shortTrackName;
 	}
 
-	public Track getTrack() {
-		return Track.getTrackByShortName(shortTrackName);
-	}
-
 	public void setShortTrackName(String shortTrackName) {
 		this.shortTrackName = shortTrackName;
+	}
+
+	public Track getTrack() {
+		return Track.getTrackByShortName(shortTrackName);
 	}
 
 	public Weather getWeatherType() {
