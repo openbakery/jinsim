@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+v0.6H
+  * added new Westhill configs
+
 v0.6 - compatible with LFS version 0.6f
   * Renamed package net.sf to org.openbakery
   * Fixed ReorderReponse

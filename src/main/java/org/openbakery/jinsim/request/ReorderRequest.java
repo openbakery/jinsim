@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class ReorderRequest extends InSimRequest {
 
-	protected static final int MAX_PLAYERS = 32;
+	protected static final int MAX_PLAYERS = 40;
 
 	private ArrayList<Integer> playerPositions;
 
