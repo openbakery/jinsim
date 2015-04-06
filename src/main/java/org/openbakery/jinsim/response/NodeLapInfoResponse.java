@@ -15,7 +15,7 @@ public class NodeLapInfoResponse extends InSimResponse {
 
 	private byte numberPlayers;
 
-	private ArrayList<NodeLap> nodeLaps = new ArrayList<NodeLap>(); // node and lap of each player (28 NodeLap objects of them)
+	private ArrayList<NodeLap> nodeLaps = new ArrayList<NodeLap>(); // node and lap of each player (max 40 NodeLap objects)
 
 	NodeLapInfoResponse() {
 		super(PacketType.NODE_LAP);
