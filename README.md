@@ -1,18 +1,18 @@
-JInSim - Java InSim Library for Live For Speed v0.5
+JInSim - Java InSim Library for Live For Speed v0.6
 ==================
 
 The purpose of JInSim is to allow Java programmers to write add-on applications for the Live For Speed racing simulation.
  
 Live For Speed has a network protocol called InSim, and two sub-protocols called OutSim and OutGauge. JInSim makes it easier to set up a connection to Live For Speed and only get the InSim packets that are wanted. 
 
-v0.5 is compatile with LFS Version 0.5Z28
+v0.6 is compatile with LFS Version 0.6H
 
 Installation
 ----------------
 Once you've downloaded the zip file that contains the release of JInSim, the installation is easy. Simply unzip the zip file and find the binary distribution in the "dist" directory. Here is a more complete rundown of the top level directory structure:
 
 jinsim.zip
-	LICENSE - The license file that outlines how this library is distributed, and how you  may distribute it. It uses the Mozilla Public License v1.1.
+	LICENSE - The license file that outlines how this library is distributed, and how you may distribute it. It uses the Mozilla Public License v1.1.
 	README - This file.
 
 	CHANGES - A list of changes that have taken place with each release.

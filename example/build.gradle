@@ -3,6 +3,7 @@ apply plugin: 'idea'
 apply plugin: 'application'
 
 sourceCompatibility = 1.6
+targetCompatibility = 1.6
 version = '1.0'
 
 mainClassName = 'org.openbakery.examples.helloworld.Main'
@@ -21,7 +22,7 @@ repositories {
 }
 
 ext.logbackVersion = '1.0.+'
-ext.jinsimVersion = '6.+'
+ext.jinsimVersion = '0.6.+'
 
 dependencies {
 	compile group: 'org.openbakery.jinsim', name: 'jinsim', version: jinsimVersion
