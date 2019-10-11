@@ -4,8 +4,8 @@ apply plugin: 'idea'
 apply plugin: 'maven'
 
 
-sourceCompatibility = 1.6
-version = '0.6.0'
+sourceCompatibility = 11
+version = '0.7.0'
 group = 'org.openbakery.jinsim'
 
 
